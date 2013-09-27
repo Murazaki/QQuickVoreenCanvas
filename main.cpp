@@ -152,24 +152,24 @@ int main(int argc, char **argv)
 {
     int out;
 
-//    QGuiApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
     VoreenApplication* VoreenApp = new VoreenApplication("VoreenCanvas", "VoreenCanvas", description, argc, argv,
         VoreenApplication::APP_ALL);
     VoreenApp->initialize();
 
-//    qmlRegisterType<FboInSGRenderer>("SceneGraphRendering", 1, 0, "Renderer");
+    qmlRegisterType<FboInSGRenderer>("SceneGraphRendering", 1, 0, "Renderer");
 
-//    QQuickView view;
-//    view.setResizeMode(QQuickView::SizeRootObjectToView);
-//    view.setSource(QUrl("qrc:///scenegraph/textureinsgnode/main.qml"));
-//    view.show();
+    QQuickView view;
+    view.setResizeMode(QQuickView::SizeRootObjectToView);
+    view.setSource(QUrl("qrc:///scenegraph/textureinsgnode/main.qml"));
+    view.show();
 
     VoreenApp->initializeGL();
 
     initialize();
 
-//    out = app.exec();
+    out = app.exec();
 
     finalize();
 

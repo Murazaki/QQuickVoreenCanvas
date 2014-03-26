@@ -48,3 +48,16 @@ void QQuickVoreenCanvas::toggleFullScreen() {
 //        fullscreen_ = !fullscreen_;
 //    }
 }
+
+QSurfaceFormat QQuickVoreenCanvas::getQSurfaceFormat(const Buffers buffers) {
+    QSurfaceFormat::FormatOption stereobuffer =
+            (buffers & GLCanvas::STEREO_VIEWING)?QSurfaceFormat::StereoBuffers : (QSurfaceFormat::FormatOption)0;
+    QSurfaceFormat::SwapBehavior swapbehavior =
+            (buffers & GLCanvas::DOUBLE_BUFFER)?QSurfaceFormat::DoubleBuffer : QSurfaceFormat::DefaultSwapBehavior;
+
+
+    QSurfaceFormat format = QSurfaceFormat(stereobuffer);
+    format.setSwapBehavior(swapbehavior);
+
+    return format;
+}

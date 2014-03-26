@@ -3,6 +3,9 @@
 
 #include "tgt/include/tgt/glcanvas.h"
 
+#include <QOpenGLContext>
+#include <QSurfaceFormat>
+
 class QQuickVoreenCanvas : public tgt::GLCanvas
 {
 public:
@@ -11,10 +14,10 @@ public:
                        const Buffers buffers = RGBADD);
     ~QQuickVoreenCanvas();
 
-    void render();
-
     /// initialize canvas
     virtual void init();
+
+    void render();
 
 //    /**
 //     * Called by the Qt framework once at the beginning, before rendering starts.
@@ -57,6 +60,8 @@ public:
      */
     virtual void getGLFocus();
     virtual void toggleFullScreen();
+
+    static QSurfaceFormat getQSurfaceFormat(const Buffers buffers);
 };
 
 #endif // QQUICKVOREENCANVAS_H

@@ -44,6 +44,27 @@
 #include <QQuickItem>
 #include "qquickvoreencanvas.h"
 
+#ifdef WIN32
+#include <windows.h>
+#endif
+
+#include <cstdlib>
+
+#include "tgt/shadermanager.h"
+#include "tgt/logmanager.h"
+
+#include "voreenapplicationqt5.h"
+
+#include "voreen/core/utils/voreenpainter.h"
+#include "voreen/core/io/serialization/serialization.h"
+#include "voreen/core/network/networkevaluator.h"
+#include "voreen/core/network/workspace.h"
+#include "voreen/core/network/processornetwork.h"
+
+#include "modules/core/processors/output/canvasrenderer.h"
+
+using namespace voreen;
+
 class TextureNode;
 
 class FboInSGRenderer : public QQuickItem
@@ -53,12 +74,23 @@ class FboInSGRenderer : public QQuickItem
 public:
     FboInSGRenderer();
 
-    static QQuickVoreenCanvas *getCanvas();
+    virtual ~FboInSGRenderer();
+
+    QQuickVoreenCanvas *getCanvas();
+
+    void setCanvas(QQuickVoreenCanvas * canvas);
 
 protected:
     QSGNode *updatePaintNode(QSGNode *, UpdatePaintNodeData *);
 
-    static TextureNode *m_Node;
+    QQuickVoreenCanvas *m_canvas;
+
+    VoreenApplicationQt5* m_app;
+
+    NetworkEvaluator* m_networkEvaluator;
+    ProcessorNetwork* m_network;
+    VoreenPainter* m_painter;
+    std::vector<CanvasRenderer*> m_canvasRenderer;
 };
 
 #endif

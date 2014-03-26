@@ -1,10 +1,14 @@
 QT += qml quick
 
-HEADERS += fboinsgrenderer.h \
-    qquickvoreencanvas.h
-SOURCES += main.cpp \
-    fboinsgrenderer.cpp \
-    qquickvoreencanvas.cpp
+HEADERS += $$PWD/fboinsgrenderer.h \
+    $$PWD/qquickvoreencanvas.h \
+    $$PWD/ext/tgt/include/tgt/qt/qttimer.h \
+    $$PWD/voreenapplicationqt5.h
+SOURCES += $$PWD/main.cpp \
+    $$PWD/fboinsgrenderer.cpp \
+    $$PWD/qquickvoreencanvas.cpp \
+    $$PWD/ext/tgt/include/tgt/qt/qttimer.cpp \
+    $$PWD/voreenapplicationqt5.cpp
 
 RESOURCES += qquickvoreencanvas.qrc
 
